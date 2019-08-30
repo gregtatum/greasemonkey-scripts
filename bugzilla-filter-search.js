@@ -23,7 +23,7 @@ Object.assign(input.style, {
 });
 insertAfter(description, searchField)
 searchField.addEventListener('keyup', filterItems);
-
+input.focus()
 
 function filterItems() {
   const searchTerm = searchField.querySelector('input').value;
