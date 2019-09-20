@@ -17,6 +17,11 @@ addStylesheet(`
 	.differential-inline-comment.inline-comment-ghost .differential-inline-done-label, .differential-inline-comment.inline-comment-ghost {
 		color: #000;
   }
+
+  /* This overlays and dims the text making it hard to read */
+	.keyboard-focus-focus-reticle {
+    background: transparent !important;
+  }
 `);
 
 function addStylesheet(text) {
