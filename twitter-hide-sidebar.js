@@ -26,10 +26,12 @@ function hideSidebar() {
 
       // The rules are de-duplicated and at the time of the writing there is pretty much
       // one css style declaration per ruleset.
-      if (style.borderRadius === '14px') {
+      if (style.borderRadius === '15px') {
         borderRadiusSelector = selectorText;
       }
-      if (style.backgroundColor == 'rgb(245, 248, 250)') {
+      const lightMode = 'rgb(245, 248, 250)';
+      const darkMode = 'rgb(25, 39, 52)';
+      if (style.backgroundColor == lightMode || style.backgroundColor === darkMode) {
         backgroundRadiusSelector = selectorText
       }
     }
@@ -47,12 +49,20 @@ function hideSidebar() {
         throw new Error("GreaseMonkey: The selectors to match the annoying sidebar elements don't seem to match anymore.")
       }
 
+      // styleSheet.insertRule(`
+      //   ${borderRadiusSelector}${backgroundRadiusSelector} > * {
+      //     opacity: 0 !important;
+      //     pointer-events: none;
+      //   }
+      // `)
+
       styleSheet.insertRule(`
         ${borderRadiusSelector}${backgroundRadiusSelector} > * {
-          opacity: 0 !important;
+          filter: blur(9px) saturate(0) contrast(0.3) brightness(1.4);
           pointer-events: none;
+					user-select: none;
         }
-      `)
+      `, 0)
       return true;
     }
   }
